@@ -76,7 +76,10 @@ namespace AssimpNet.Interop.Generator {
                 writerParams.WriteSymbols = true;
             }
 
-            AssemblyDefinition assemblyDef = AssemblyDefinition.ReadAssembly(filePath, readerParams);
+            FileStream fs = new FileStream(filePath, FileMode.Open);
+            if (fs == null) throw new IOException("Error open file" + filePath);
+
+            AssemblyDefinition assemblyDef = AssemblyDefinition.ReadAssembly(fs, readerParams);
             ((BaseAssemblyResolver) assemblyDef.MainModule.AssemblyResolver).AddSearchDirectory(Path.GetDirectoryName(filePath));
 
             AssemblyDefinition mscorLib = null;
@@ -91,10 +94,7 @@ namespace AssimpNet.Interop.Generator {
                 }
             }
 
-            if(mscorLib == null)
-                throw new InvalidOperationException("Missing mscorlib.dll");
-
-            m_mscorLib = mscorLib;
+            m_mscorLib = mscorLib ?? throw new InvalidOperationException("Missing mscorlib.dll");
 
             for(int i = 0; i < assemblyDef.CustomAttributes.Count; i++) {
                 CustomAttribute attr = assemblyDef.CustomAttributes[i];
@@ -110,9 +110,8 @@ namespace AssimpNet.Interop.Generator {
             }
 
             RemoveInteropClass(assemblyDef);
-
-            assemblyDef.Write(filePath, writerParams);
-
+            assemblyDef.Write(fs, writerParams);
+            fs.Close();
             Console.WriteLine("Interop Generation complete.");
         }
 
@@ -247,7 +246,7 @@ namespace AssimpNet.Interop.Generator {
         private static unsafe void CreateWriteArrayMethod(MethodDefinition method) {
             //Make sure we import IntPtr::op_explicit(void*)
             MethodInfo opExplicitInfo = typeof(IntPtr).GetMethod("op_Explicit", new Type[] { typeof(void*) });
-            MethodReference opExplicitRef = method.Module.Import(opExplicitInfo);
+            MethodReference opExplicitRef = method.Module.ImportReference(opExplicitInfo);
 
             method.Body.Instructions.Clear();
             method.Body.InitLocals = true;
@@ -295,7 +294,7 @@ namespace AssimpNet.Interop.Generator {
         private static unsafe void CreateReadArrayMethod(MethodDefinition method) {
             //Make sure we import IntPtr::op_explicit(void*)
             MethodInfo opExplicitInfo = typeof(IntPtr).GetMethod("op_Explicit", new Type[] { typeof(void*) });
-            MethodReference opExplicitRef = method.Module.Import(opExplicitInfo);
+            MethodReference opExplicitRef = method.Module.ImportReference(opExplicitInfo);
 
             method.Body.Instructions.Clear();
             method.Body.InitLocals = true;
