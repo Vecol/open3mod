@@ -23,6 +23,7 @@ using Assimp;
 using OpenTK;
 using OpenTK.Graphics;
 using OpenTK.Graphics.OpenGL;
+using PrimitiveType = OpenTK.Graphics.OpenGL.PrimitiveType;
 
 namespace open3mod
 {
@@ -59,21 +60,21 @@ namespace open3mod
                 max.Z = Math.Max(max.Z, tmp.Z);
             }
 
-            GL.Begin(BeginMode.LineLoop);
+            GL.Begin(PrimitiveType.LineLoop);
             GL.Vertex3(min);
             GL.Vertex3(new Vector3(min.X, max.Y, min.Z));
             GL.Vertex3(new Vector3(min.X, max.Y, max.Z));
             GL.Vertex3(new Vector3(min.X, min.Y, max.Z));
             GL.End();
 
-            GL.Begin(BeginMode.LineLoop);
+            GL.Begin(PrimitiveType.LineLoop);
             GL.Vertex3(new Vector3(max.X, min.Y, min.Z));
             GL.Vertex3(new Vector3(max.X, max.Y, min.Z));
             GL.Vertex3(new Vector3(max.X, max.Y, max.Z));
             GL.Vertex3(new Vector3(max.X, min.Y, max.Z));
             GL.End();
 
-            GL.Begin(BeginMode.Lines);
+            GL.Begin(PrimitiveType.Lines);
             GL.Vertex3(min);
             GL.Vertex3(new Vector3(max.X, min.Y, min.Z));
 

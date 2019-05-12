@@ -145,7 +145,7 @@ namespace open3mod
             GL.AttachShader(Program, _fs);
 
             GL.LinkProgram(Program);
-            GL.GetProgram(Program, ProgramParameter.LinkStatus, out result);
+            GL.GetProgram(Program, GetProgramParameterName.LinkStatus, out result);
             if (result == 0)
             {
                 Debug.WriteLine(GL.GetProgramInfoLog(Program));

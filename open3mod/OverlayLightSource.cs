@@ -36,7 +36,7 @@ namespace open3mod
             GL.Disable(EnableCap.CullFace);
             GL.ColorMaterial(MaterialFace.FrontAndBack, ColorMaterialParameter.AmbientAndDiffuse);
 
-            GL.Begin(BeginMode.Lines);
+            GL.Begin(PrimitiveType.Lines);
 
             GL.Color4(new Color4(1.0f, 0.0f, 0.0f, 1.0f));
             GL.Vertex3(dir * 2.0f);

@@ -55,7 +55,7 @@ namespace open3mod
         ///    from a call to CalculateElements()</param>
         public static void Draw(Vertex[] sphereVertices, ushort[] sphereElements)
         {
-            GL.Begin(BeginMode.Triangles);
+            GL.Begin(PrimitiveType.Triangles);
             foreach (var element in sphereElements)
             {
                 var vertex = sphereVertices[element];

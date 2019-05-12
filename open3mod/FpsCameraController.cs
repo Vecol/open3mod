@@ -38,7 +38,6 @@ namespace open3mod
         private const float RotationSpeed = 0.5f;
 
         private float _pitchAngle = 0.0f;
-        private float _rollAngle = 0.0f;
         private float _yawAngle = 0.0f;
 
 

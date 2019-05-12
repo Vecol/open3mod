@@ -27,6 +27,7 @@ using System.Text;
 using Assimp;
 using OpenTK;
 using OpenTK.Graphics.OpenGL;
+using PrimitiveType = OpenTK.Graphics.OpenGL.PrimitiveType;
 
 namespace open3mod
 {
@@ -121,7 +122,7 @@ namespace open3mod
 
             // primitives
             GL.BindBuffer(BufferTarget.ElementArrayBuffer, _vbo.ElementBufferId);
-            GL.DrawElements(BeginMode.Triangles, _vbo.NumIndices /* actually, count(indices) */,
+            GL.DrawElements(PrimitiveType.Triangles, _vbo.NumIndices /* actually, count(indices) */,
                 _vbo.Is32BitIndices ? DrawElementsType.UnsignedInt : DrawElementsType.UnsignedShort,
                 IntPtr.Zero);
 

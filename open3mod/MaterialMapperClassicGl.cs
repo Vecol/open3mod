@@ -223,7 +223,7 @@ namespace open3mod
             if (hasAlpha)
             {
                 GL.Enable(EnableCap.Blend);
-                GL.BlendFunc(BlendingFactorSrc.SrcAlpha, BlendingFactorDest.OneMinusSrcAlpha);
+                GL.BlendFunc(BlendingFactor.SrcAlpha, BlendingFactor.OneMinusSrcAlpha);
                 GL.DepthMask(false);
             }
             else
@@ -237,7 +237,7 @@ namespace open3mod
         private void ApplyFixedFunctionGhostMaterial(Mesh mesh, Material mat, bool shaded)
         {
             GL.Enable(EnableCap.Blend);
-            GL.BlendFunc(BlendingFactorSrc.SrcAlpha, BlendingFactorDest.OneMinusSrcAlpha);
+            GL.BlendFunc(BlendingFactor.SrcAlpha, BlendingFactor.OneMinusSrcAlpha);
             GL.DepthMask(false);
 
             var color = new Color4(.6f, .6f, .9f, 0.15f);           

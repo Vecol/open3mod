@@ -22,6 +22,7 @@ using Assimp;
 using OpenTK;
 using OpenTK.Graphics;
 using OpenTK.Graphics.OpenGL;
+using PrimitiveType = OpenTK.Graphics.OpenGL.PrimitiveType;
 
 namespace open3mod
 {
@@ -44,7 +45,7 @@ namespace open3mod
             // the unit box, but the normals should have a fixed length.
             var scale = invGlobalScale * 0.05f;
 
-            GL.Begin(BeginMode.Lines);
+            GL.Begin(PrimitiveType.Lines);
 
             GL.Disable(EnableCap.Lighting);
             GL.Disable(EnableCap.Texture2D);

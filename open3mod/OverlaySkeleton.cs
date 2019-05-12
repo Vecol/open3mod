@@ -22,6 +22,7 @@ using Assimp;
 using OpenTK;
 using OpenTK.Graphics;
 using OpenTK.Graphics.OpenGL;
+using PrimitiveType = OpenTK.Graphics.OpenGL.PrimitiveType;
 
 namespace open3mod
 {
@@ -55,14 +56,14 @@ namespace open3mod
 
             const float jointWidth = 0.03f;
 
-            GL.Begin(BeginMode.LineLoop);
+            GL.Begin(PrimitiveType.LineLoop);
             GL.Vertex3(-jointWidth * up + -jointWidth * right);
             GL.Vertex3(-jointWidth * up + jointWidth * right);
             GL.Vertex3(jointWidth * up + jointWidth * right);
             GL.Vertex3(jointWidth * up + -jointWidth * right);
             GL.End();
 
-            GL.Begin(BeginMode.Lines);
+            GL.Begin(PrimitiveType.Lines);
             GL.Vertex3(-jointWidth * up + -jointWidth * right);
             GL.Vertex3(target);
             GL.Vertex3(-jointWidth * up + jointWidth * right);

@@ -51,7 +51,7 @@ namespace open3mod
             {
                 SmartThreadPool.WaitAll(items);
             }
-            catch (ThreadInterruptedException ex)
+            catch (ThreadInterruptedException)
             {
                 foreach (var item in items)
                 {

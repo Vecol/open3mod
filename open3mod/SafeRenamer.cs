@@ -158,7 +158,7 @@ namespace open3mod
             {
                 throw ex;
             }
-            catch (IOException ex)
+            catch (IOException)
             {
                 // Just don't rename the texture. Likeliest case is the destination file already exists.
                 // TODO(acgessler): Figure out how to best propagate this error.

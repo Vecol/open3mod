@@ -89,7 +89,7 @@ namespace open3mod
             tmp = Math.Max(InitposeMax.Z - InitposeMin.Z, tmp);
             tmp = 2.0f / tmp;
 
-            var world = Matrix4.Scale(tmp);
+            var world = Matrix4.CreateScale(tmp);
             world *= Matrix4.CreateTranslation(-(InitposeMin + InitposeMax) * 0.5f);
             PushWorld(ref world);
             //

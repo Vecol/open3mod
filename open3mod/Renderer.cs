@@ -741,7 +741,7 @@ namespace open3mod
             var xofs = lineWidth*0.5*texW;
             var yofs = lineWidth*0.5*texH;
 
-            GL.Begin(BeginMode.LineStrip);
+            GL.Begin(PrimitiveType.LineStrip);
             GL.Vertex2(-1.0 + xofs, -1.0 + yofs);
             GL.Vertex2(1.0 - xofs, -1.0 + yofs);
             GL.Vertex2(1.0 - xofs, 1.0 - yofs);

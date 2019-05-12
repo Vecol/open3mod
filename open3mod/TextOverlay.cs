@@ -220,7 +220,7 @@ namespace open3mod
           
             GL.Enable(EnableCap.Texture2D);
             GL.Enable(EnableCap.Blend);
-            GL.BlendFunc(BlendingFactorSrc.SrcAlpha, BlendingFactorDest.OneMinusSrcAlpha);
+            GL.BlendFunc(BlendingFactor.SrcAlpha, BlendingFactor.OneMinusSrcAlpha);
 
             GL.BindTexture(TextureTarget.Texture2D, _textTexture);
 
@@ -229,7 +229,7 @@ namespace open3mod
             // clear color
             GL.Color3(1.0f,1.0f,1.0f);
 
-            GL.Begin(BeginMode.Quads);
+            GL.Begin(PrimitiveType.Quads);
             GL.TexCoord2(0f, 0f); GL.Vertex2(0f - offset, 0f - offset);
             GL.TexCoord2(1f, 0f); GL.Vertex2(cs.Width - offset, 0f - offset);
             GL.TexCoord2(1f, 1f); GL.Vertex2(cs.Width - offset, cs.Height - offset);
